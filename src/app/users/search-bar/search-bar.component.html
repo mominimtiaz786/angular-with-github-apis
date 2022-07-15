@@ -1,0 +1,12 @@
+<div id="search-component">
+  <label for="search-box">Users Search: </label>
+  <input #searchBox id="search-box" (keydown.enter)="search(searchBox.value)" />
+
+  <!-- <ul class="search-result">
+    <li *ngFor="let user of gitservice.users_array" >
+        <a routerLink="/detail/{{user.login}}">
+          {{user.login}}
+        </a>
+      </li>
+  </ul>
+</div> -->

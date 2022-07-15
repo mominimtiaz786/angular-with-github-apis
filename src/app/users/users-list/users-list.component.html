@@ -1,0 +1,23 @@
+<!-- List Component -->
+<h2>{{list_name}}</h2>
+
+<table>
+
+  <tr>
+    <th>Name</th>
+    <th>id</th>
+    <th>avatar</th>
+  </tr>
+
+  <tr *ngFor="let obj of my_json">
+    <td><a routerLink="/details/{{obj.login}}">{{obj.login}}</a></td>
+    <td>{{obj.id}}</td>
+    <td>
+      <a routerLink="/details/{{obj.login}}">
+        <img width="40" alt="{{obj.login}}'s avatar" src="{{obj.avatar_url}}" style="border-radius: 10rem" />
+      </a>
+    </td>
+
+  </tr>
+
+</table>
