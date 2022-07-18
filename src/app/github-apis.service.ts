@@ -24,13 +24,7 @@ export class GithubApisService {
     this.users_array.next(next)
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   /** GET users from the server */
   getUsers(): void {
@@ -45,7 +39,6 @@ export class GithubApisService {
           this.setListName("Github Users List")
         }
       );
-
   }
 
 
@@ -69,6 +62,55 @@ export class GithubApisService {
       }
     );
   }
+
+  /* GET followers of a particular user */
+  followersList(username: string): void {
+    if (!username.trim()) {
+      // if not username then show default list.
+      this.getUsers();
+      return
+    }
+
+    this.http.get(`${this.API_URL}users/${username}/followers`).pipe(
+      tap(x => x ?
+        console.log(`found followers of "${username}"`) :
+        console.log(`No followers found "${username}"`)),
+      catchError(this.handleError<any[]>('followersList', []))
+    ).subscribe(
+      response => {
+        this.setUserArray(response)
+        this.setListName(`"${username}'s" Followers List `)
+      }
+    );
+  }
+
+  /* GET repos of a particular user */
+  reposList(username: string): Observable<any> {
+    if (!username.trim()) {
+      return
+    }
+
+    return this.http.get(`${this.API_URL}users/${username}/repos`).pipe(
+      tap(x => x ?
+        console.log(`found Repos of "${username}"`) :
+        console.log(`no Repos Found "${username}"`)),
+      catchError(this.handleError<any[]>('reposList', []))
+    );
+  }
+
+  /* GET repos of a particular user */
+  userObject(username: string): Observable<any> {
+    if (!username.trim()) {
+      return
+    }
+    return this.http.get(`${this.API_URL}users/${username}`).pipe(
+      tap(x => x ?
+        console.log(`found User"${username}"`) :
+        console.log(`User no found "${username}"`)),
+      catchError(this.handleError<any[]>('userObject', []))
+    );
+  }
+
 
 
   /**

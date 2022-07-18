@@ -20,7 +20,7 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
 
     // calling the function that will triger the subscribe of the Observable Heroes
-    this.gitservice.getUsers()
+    // this.gitservice.getUsers()
 
     this.gitservice.users_array.subscribe(
       (response) => {

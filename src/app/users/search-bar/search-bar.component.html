@@ -1,12 +1,17 @@
-<div id="search-component">
-  <label for="search-box">Users Search: </label>
-  <input #searchBox id="search-box" (keydown.enter)="search(searchBox.value)" />
+<div class="container">
 
-  <!-- <ul class="search-result">
-    <li *ngFor="let user of gitservice.users_array" >
-        <a routerLink="/detail/{{user.login}}">
-          {{user.login}}
-        </a>
-      </li>
-  </ul>
-</div> -->
+  <div class="row height d-flex justify-content-center align-items-center">
+
+    <div class="col-md-6">
+
+      <div class="form">
+        <i class="fa fa-search"></i>
+        <input type="text" class="form-control form-input" placeholder="Search Users..." #searchBox (keydown.enter)="search(searchBox.value)">
+        <span class="left-pan"><i class="fa fa-github"></i></span>
+      </div>
+      
+    </div>
+    
+  </div>
+  
+</div>

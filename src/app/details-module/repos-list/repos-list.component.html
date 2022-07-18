@@ -1,0 +1,26 @@
+<h2 class="text-center my-5">Repos List</h2>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">url</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let obj of my_repos">
+          <td>{{obj.full_name}}</td>
+          <td>
+            <a routerLink="/details/{{obj.html_url}}">
+              {{obj.html_url}}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
