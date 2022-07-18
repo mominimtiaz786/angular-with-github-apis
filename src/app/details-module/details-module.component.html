@@ -1,3 +1,5 @@
-<app-user-details></app-user-details>
-<app-users-list></app-users-list>
-<app-repos-list></app-repos-list>
+<app-user-details [current_user]="current_user_data"></app-user-details>
+<app-users-list [my_json]="followers_array"
+[list_name]="list_name"
+></app-users-list>
+<app-repos-list [my_repos]="repos_array"></app-repos-list>

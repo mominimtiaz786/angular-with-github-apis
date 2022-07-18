@@ -6,7 +6,9 @@
 
       <div class="form">
         <i class="fa fa-search"></i>
-        <input type="text" class="form-control form-input" placeholder="Search Users..." #searchBox (keydown.enter)="search(searchBox.value)">
+        <input type="text" class="form-control form-input" placeholder="Search Users..." #searchBox 
+        (input)
+        ="addNewTerm(searchBox.value)">
         <span class="left-pan"><i class="fa fa-github"></i></span>
       </div>
       

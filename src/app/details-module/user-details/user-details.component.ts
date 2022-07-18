@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GithubApisService } from 'src/app/github-apis.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -10,36 +8,13 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UserDetailsComponent implements OnInit {
 
-  current_user: any
-  username: string
+  @Input() current_user: any
 
-  constructor(
-    private gitservice: GithubApisService,
-    private route: ActivatedRoute) {
-     }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (res)=>{
-        this.username = res.username
-        this.getUserObject()
-        this.gitservice.followersList(this.username)
-        
-      }
-    )
 
   }
-
-
-  getUserObject(): any {
-    this.gitservice.userObject(this.username).subscribe(
-      response => {
-        this.current_user = response
-      }
-    )
-  }
-
-
-
 
 }

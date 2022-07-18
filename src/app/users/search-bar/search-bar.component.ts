@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 // import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { GithubApisService } from '../../github-apis.service';
@@ -11,16 +11,17 @@ import { GithubApisService } from '../../github-apis.service';
 })
 export class SearchBarComponent implements OnInit {
 
+  @Output() newSearchEvent = new EventEmitter<string>();
   // private searchTerms = new Subject<string>();
 
   constructor(private gitservice: GithubApisService) { }
 
-  ngOnInit(): void {
-
+  addNewTerm(value: string) {
+    this.newSearchEvent.emit(value);
   }
 
-  search(term: string): void {
-    this.gitservice.searchUsers(term)
+  ngOnInit(): void {
+
   }
 
 }

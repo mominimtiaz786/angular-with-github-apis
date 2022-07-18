@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GithubApisService } from 'src/app/github-apis.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,29 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./repos-list.component.css']
 })
 export class ReposListComponent implements OnInit {
-  my_repos: any;
-  username: string
+  @Input() my_repos: any;
 
-  constructor(
-    private gitservice: GithubApisService,
-    private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (res) => {
-        this.username = res.username
-        this.getRepos()
-      }
-    )
-
-  }
-  // ng generate module shared-module
-  getRepos(): any {
-    this.gitservice.reposList(this.username).subscribe(
-      (response) => {
-        this.my_repos = response
-      }
-    )
   }
 
 }

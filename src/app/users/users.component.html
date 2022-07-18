@@ -1,2 +1,5 @@
-<app-search-bar></app-search-bar>
-<app-users-list></app-users-list>
+<app-search-bar (newSearchEvent)="searchStream($event)"></app-search-bar>
+
+<app-users-list [my_json]="users_data"
+    [list_name]="list_name"
+></app-users-list>

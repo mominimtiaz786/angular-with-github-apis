@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
@@ -27,61 +27,43 @@ export class GithubApisService {
   constructor(private http: HttpClient) { }
 
   /** GET users from the server */
-  getUsers(): void {
+  getUsers(): Observable<any> {
     let url = this.API_URL + "users"
     let obs = this.http.get<any[]>(url)
       .pipe(
         tap(x => console.log('fetched users')),
         catchError(this.handleError<any[]>('getUsers', []))
-      ).subscribe(
-        response => {
-          this.setUserArray(response);
-          this.setListName("Github Users List")
-        }
-      );
+      )
+      return obs
   }
 
 
   /* GET users whose name contains search term */
-  searchUsers(term: string): void {
+  searchUsers(term: string): Observable<any> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
-      this.getUsers();
-      return
+      return this.getUsers();
     }
     let url = this.API_URL + "search/users"
-    this.http.get(`${url}?q=${term}`).pipe(
+    let obs=this.http.get(`${url}?q=${term}`).pipe(
       tap(x => x['items'].length ?
         console.log(`found Users matching "${term}"`) :
         console.log(`no Users matching "${term}"`)),
       catchError(this.handleError<any[]>('searchUsers', []))
-    ).subscribe(
-      response => {
-        this.setUserArray(response['items'])
-        this.setListName(`Search Results on "${term}"`)
-      }
-    );
+    )
+    return obs
   }
 
   /* GET followers of a particular user */
-  followersList(username: string): void {
-    if (!username.trim()) {
-      // if not username then show default list.
-      this.getUsers();
-      return
-    }
+  followersList(username: string): Observable<any> {
 
-    this.http.get(`${this.API_URL}users/${username}/followers`).pipe(
+    let obs = this.http.get(`${this.API_URL}users/${username}/followers`).pipe(
       tap(x => x ?
         console.log(`found followers of "${username}"`) :
         console.log(`No followers found "${username}"`)),
       catchError(this.handleError<any[]>('followersList', []))
-    ).subscribe(
-      response => {
-        this.setUserArray(response)
-        this.setListName(`"${username}'s" Followers List `)
-      }
-    );
+    )
+    return obs
   }
 
   /* GET repos of a particular user */

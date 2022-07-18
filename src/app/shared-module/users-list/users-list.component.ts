@@ -9,8 +9,9 @@ import { GithubApisService } from '../../github-apis.service';
 })
 export class UsersListComponent implements OnInit {
 
-  my_json: any
-  list_name : string
+  @Input() my_json: any;
+  @Input() list_name : string;
+  
 
   constructor(
     private gitservice: GithubApisService
@@ -18,22 +19,7 @@ export class UsersListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    // calling the function that will triger the subscribe of the Observable Heroes
-    // this.gitservice.getUsers()
-
-    this.gitservice.users_array.subscribe(
-      (response) => {
-        this.my_json = response
-      }
-    )
-
-    this.gitservice.list_name.subscribe(
-      (response) => {
-        this.list_name = response
-      }
-    )
-
+    
   }
 
 }
