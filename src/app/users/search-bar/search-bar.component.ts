@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-// import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { GithubApisService } from '../../github-apis.service';
 
 
@@ -12,7 +10,6 @@ import { GithubApisService } from '../../github-apis.service';
 export class SearchBarComponent implements OnInit {
 
   @Output() newSearchEvent = new EventEmitter<string>();
-  // private searchTerms = new Subject<string>();
 
   constructor(private gitservice: GithubApisService) { }
 
@@ -21,7 +18,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GithubApisService } from '../github-apis.service';
+import { SimpleChanges } from '@angular/core';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-details-module',
   templateUrl: './details-module.component.html',
@@ -20,6 +22,7 @@ export class DetailsModuleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(
       (res) => {
         this.username = res.username
@@ -36,7 +39,6 @@ export class DetailsModuleComponent implements OnInit {
     )
 
   }
-
 
   getUserObject(): any {
     this.gitservice.userObject(this.username).subscribe(

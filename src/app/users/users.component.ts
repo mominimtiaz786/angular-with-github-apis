@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
 
   users_data: any
   list_name: string = "Github Users List"
+  spinner_display: string='none'; 
 
   search_observables: Observable<any>;
 
@@ -38,13 +39,18 @@ export class UsersComponent implements OnInit {
 
     this.search_observables.subscribe(
       (res) => {
+        
         if (res.hasOwnProperty('items')) this.users_data = res['items']
-        else this.users_data = res
+        else this.users_data = res;
+
+        this.spinner_display = 'none';
+
       }
     )
   }
 
   searchStream(term: string): void {
+    this.spinner_display = 'block'
     this.searchTerms.next(term);
   }
 

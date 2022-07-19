@@ -14,7 +14,7 @@
         <tr *ngFor="let obj of my_repos">
           <td>{{obj.full_name}}</td>
           <td>
-            <a routerLink="/details/{{obj.html_url}}">
+            <a href="{{obj.html_url}}">
               {{obj.html_url}}
             </a>
           </td>
