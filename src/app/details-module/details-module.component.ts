@@ -6,7 +6,7 @@ import { $ } from 'protractor';
 @Component({
   selector: 'app-details-module',
   templateUrl: './details-module.component.html',
-  styleUrls: ['./details-module.component.css']
+  styleUrls: ['./details-module.component.scss']
 })
 export class DetailsModuleComponent implements OnInit {
 
@@ -14,8 +14,18 @@ export class DetailsModuleComponent implements OnInit {
   username: string;
   list_name: string;
   followers_array: any;
+  followers_keys: any = [
+    {'key':'id','name': 'ID'},
+    {'key':'avatar_url','name': 'Avatar'},
+    {'key':'login','name': 'Username'},
+  ]
   repos_array: any;
-
+  repos_keys: any = [
+    {'key':'id','name': 'ID'},
+    {'key':'name','name': 'Name'},
+    {'key':'html_url','name': 'URL'},
+    
+  ]
   constructor(
     private gitservice: GithubApisService,
     private route: ActivatedRoute

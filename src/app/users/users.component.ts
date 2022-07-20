@@ -8,12 +8,17 @@ import {
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
 
   users_data: any
   list_name: string = "Github Users List"
+  users_keys: any = [
+    {'key':'id','name': 'ID'},
+    {'key':'avatar_url','name': 'Avatar'},
+    {'key':'login','name': 'Username'},
+  ]
   spinner_display: string='none'; 
 
   search_observables: Observable<any>;
@@ -40,8 +45,12 @@ export class UsersComponent implements OnInit {
     this.search_observables.subscribe(
       (res) => {
         
-        if (res.hasOwnProperty('items')) this.users_data = res['items']
-        else this.users_data = res;
+        if (res.hasOwnProperty('items')) {
+          this.users_data = res['items']
+          this.list_name = "Search Results"
+        }
+        else {this.users_data = res;
+          this.list_name = "Github Users List"}
 
         this.spinner_display = 'none';
 

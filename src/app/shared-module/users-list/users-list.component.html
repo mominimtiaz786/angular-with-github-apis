@@ -1,6 +1,6 @@
 <!-- List Component -->
 
-<div class="event-schedule-area-two bg-color pad100">
+<div class="bg-color pad100 mt-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -17,46 +17,51 @@
     <div class="row">
       <div class="col-lg-12">
 
-
         <div class="tab-content tab-pane">
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th class="text-center" scope="col">ID</th>
-                  <th scope="col">Avatar</th>
-                  <th scope="col">Username</th>
+                  <ng-container *ngFor="let key_obj of fields">
+                    <th scope="col">{{key_obj['name']}}</th>
+                  </ng-container>
                 </tr>
               </thead>
               <tbody>
                 <tr class="inner-box" *ngFor="let obj of my_json">
-                  <th scope="row">
-                    <div class="event-date">
-                      <span>{{obj.id}}</span>
-                    </div>
-                  </th>
-                  <td>
-                    <div class="event-img">
-                      <a routerLink="/details/{{obj.login}}"><img src="{{obj.avatar_url}}" alt="" /></a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="event-wrap">
-                      <h3><a routerLink="/details/{{obj.login}}">{{obj.login}}</a></h3>
-                      <div class="meta">
-                        <div class="organizers">
-                          <a href="{{obj.html_url}}">Github Profile</a>
-                        </div>
-                        <div class="categories">
-                          <a routerLink="/details/{{obj.login}}">User</a>
-                        </div>
+                  <ng-container *ngFor="let key_obj of fields">
+                    <ng-container [ngSwitch]="(key_obj['key'])">
 
-                      </div>
-                    </div>
-                  </td>
+                      <td *ngSwitchCase="'avatar_url'">
+                        <div class="event-img">
+                          <a routerLink="/details/{{obj.login}}"><img src="{{obj.avatar_url}}" alt="" /></a>
+                        </div>
+                      </td>
 
+                      <td *ngSwitchCase="'login'">
+                        <div class="event-wrap">
+                          <h3><a routerLink="/details/{{obj.login}}">{{obj.login}}</a></h3>
+                          <div class="meta">
+                            <div class="organizers">
+                              <a href="{{obj.html_url}}">Github Profile</a>
+                            </div>
+                            <div class="categories">
+                              <a routerLink="/details/{{obj.login}}">User</a>
+                            </div>
+
+                          </div>
+                        </div>
+                      </td>
+
+                      <td *ngSwitchDefault>
+                        <div class="event-date">
+                          <span>{{obj[key_obj['key']]}}</span>
+                        </div>
+                      </td>
+
+                    </ng-container>
+                  </ng-container>
                 </tr>
-
               </tbody>
             </table>
           </div>

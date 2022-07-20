@@ -5,14 +5,16 @@
             <div class="d-flex flex-column">
                 <div class="d-flex flex-row align-items-center p-5 bg-dark text-white">
                     <h3 class="display-5">{{current_user.name}}</h3>
+                    <ng-container *ngIf="current_user.twitter_username">
+                        <a href="https://twitter.com/{{current_user.twitter_username}}"><i
+                                class="ml-3 fa fa-twitter"></i></a>
+                    </ng-container>
 
-                    <a href="https://twitter.com/{{current_user.twitter_username}}"><i
-                            class="mx-3 fa fa-twitter"></i></a>
+                    <a href="{{current_user.html_url}}"><i class="ml-3 fa fa-github"></i></a>
 
-                    <a href="{{current_user.html_url}}"><i class="mr-3 fa fa-github"></i></a>
-
-                    <a href="{{current_user.blog}}"><i class="mr-3 fas fa-blog"></i></a>
-
+                    <ng-container *ngIf="current_user.blog">
+                        <a href="{{current_user.blog}}"><i class="ml-3 fa fa-globe"></i></a>
+                    </ng-container>
                 </div>
                 <div class="p-3 bg-black text-white">
                     <h6>{{current_user.location}}</h6>

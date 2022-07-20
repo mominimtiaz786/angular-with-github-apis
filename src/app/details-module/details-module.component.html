@@ -1,5 +1,11 @@
 <app-user-details [current_user]="current_user_data"></app-user-details>
+
 <app-users-list [my_json]="followers_array"
 [list_name]="list_name"
+[fields]="followers_keys"
 ></app-users-list>
-<app-repos-list [my_repos]="repos_array"></app-repos-list>
+
+<app-users-list [my_json]="repos_array"
+[list_name]="'Repos List'"
+[fields]="repos_keys"
+></app-users-list>
