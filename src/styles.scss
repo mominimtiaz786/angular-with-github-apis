@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 // @import './app/Themes/theme1.scss'
 
+:root{
+    // Theme1
+    --table_header:#007bff;
+    --body_bg:#ffffff;
+    --headings_color:#000;
+    --table_body:#fbfbfb;
+    --table_font_color:#000;
+}
+
+body{
+    background-color: var(--body_bg);
+}

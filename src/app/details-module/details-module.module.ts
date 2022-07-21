@@ -5,15 +5,12 @@ import { SharedModuleModule } from '../shared-module/shared-module.module';
 
 import { DetailsModuleComponent } from './details-module.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { ReposListComponent } from './repos-list/repos-list.component';
-import { UsersModule } from '../users/users.module';
 
 
 @NgModule({
   declarations: [
     DetailsModuleComponent,
     UserDetailsComponent,
-    ReposListComponent
   ],
   imports: [
     CommonModule,
