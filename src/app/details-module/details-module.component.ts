@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GithubApisService } from '../github-apis.service';
-import { SimpleChanges } from '@angular/core';
-import { $ } from 'protractor';
+
 @Component({
   selector: 'app-details-module',
   templateUrl: './details-module.component.html',
   styleUrls: ['./details-module.component.scss']
 })
 export class DetailsModuleComponent implements OnInit {
-
   current_user_data: any;
   username: string;
   list_name: string;

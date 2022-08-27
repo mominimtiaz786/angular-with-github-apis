@@ -7,7 +7,6 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-
   @Input() current_user: any
 
   constructor() {
